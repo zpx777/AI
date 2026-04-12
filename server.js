@@ -1,3 +1,4 @@
+// 1. 保留你的原有业务代码
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
@@ -35,6 +36,9 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Server running");
+// 🔥 核心修正：替换原有的固定端口 3000
+// 使用平台动态分配的端口，本地开发默认10000（避免冲突）
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
